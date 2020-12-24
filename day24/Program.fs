@@ -1,6 +1,7 @@
 ﻿// Learn more about F# at http://docs.microsoft.com/dotnet/fsharp
 
 open System
+open System.Diagnostics
 open day24.Types 
 open day24.Utils
 open day24.Task1
@@ -14,11 +15,12 @@ let from whom =
 [<EntryPoint>]
 let main argv =
     let input2 = readFile "/Users/xeno/projects/aoc2020/day24_fs/input2.txt"
-    printfn "Input: %A" input2
-    let t = TilePos(0,0)
-    let t = t.InDirection(EAST)
-    let t = t.InDirection(EAST)
-    let t = t.InDirection(NW)
-    printfn "%A" t 
+//     printfn "Input: %A" input2
+//    let dirs1 = toDirections "nwwswee"
+    let initialState = State(Floor(),TilePos(0,0))
+    let endState = processInstructions initialState input2 
+//    let endState = flipTiles initialState dirs1 
+    printfn "%A" endState
+    printfn "Answer 1: %d" (endState.Floor.countBlacks ())
     0
     

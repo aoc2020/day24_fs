@@ -2,5 +2,22 @@ module day24.Task1
 
 open day24.Types
 
-let flipTiles (floor:Floor,dirs: List<Direction>,pos:TilePos) = 1
+type State (floor:Floor, pos:TilePos) as self =
+    override this.ToString () = sprintf "State(floor:%A, pos:%A)" floor pos 
+    member this.Floor = floor
+    member this.Pos = pos 
+
+let flipTiles (state:State) (directions:List<Direction> : List<Direction>) : State =
+    let accumulate (state:State) (dir:Direction) =
+        let newPos = state.Pos.InDirection dir
+        let newFloor = state.Floor.flip newPos
+        State(newFloor,newPos)
+    directions |> List.fold accumulate state
+    
+let processInstructions (state:State) (directions:List<Direction>[]) : State =
+    let accumulate (state:State) (dirs:List<Direction>) : State =
+        let state = State(state.Floor,TilePos(0,0))
+        flipTiles state dirs
+    directions |> Array.fold accumulate state 
+        
           

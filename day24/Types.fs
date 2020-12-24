@@ -28,6 +28,7 @@ type TilePos (x:int,y:int) as self =
 
 type TileMap = Map<RawPos,TileColor> 
 type Floor (tiles:Map<RawPos,TileColor>) as self =
+    override this.ToString () = sprintf "Floor(%A)" tiles 
     new () = Floor(Map.empty)
     member this.tileAt (pos:TilePos) : TileColor =
         if tiles.ContainsKey pos.Raw then
@@ -41,5 +42,11 @@ type Floor (tiles:Map<RawPos,TileColor>) as self =
                       | BLACK -> WHITE
         let newTiles = tiles.Add (pos.Raw,newTile)
         Floor (newTiles)
+    
+    member this.countBlacks () =
+        Map.toSeq tiles
+        |> Seq.map (snd)
+        |> Seq.filter (fun (c:TileColor) -> c = BLACK)
+        |> Seq.length 
         
             
