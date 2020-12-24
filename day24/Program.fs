@@ -14,9 +14,9 @@ let from whom =
 
 [<EntryPoint>]
 let main argv =
-    let input2 = readFile "/Users/xeno/projects/aoc2020/day24_fs/input2.txt"
+    let input2 = readFile "/Users/xeno/projects/aoc2020/day24_fs/input.txt"
 //     printfn "Input: %A" input2
-    let dirs1 = toDirections "swwnee"
+    let dirs1 = toDirections "nwnwsese"
     let initialState = State(Floor(),TilePos(0,0))
     // let initialState = State(Floor(), TilePos(-4,-4))
     let endState = processInstructions initialState input2
