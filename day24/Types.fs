@@ -13,10 +13,10 @@ type TilePos (x:int,y:int) as self =
     member this.Raw : RawPos = (x,y)
     member this.East () = TilePos(x+1,y)
     member this.West () = TilePos(x-1,y)
-    member this.SouthEast () = TilePos(1 - (abs(y-1) % 2),y-1)
-    member this.SouthWest () = TilePos(-(abs(x-1) % 2),y-1)
-    member this.NorthEast () = TilePos(1 - ((y+1)%2),y+1)
-    member this.NorthWest () = TilePos(-((y+1)%2),y+1)
+    member this.SouthEast () = TilePos(x + 1 - (abs(y-1) % 2),y-1)
+    member this.SouthWest () = TilePos(x - (abs(x-1) % 2),y-1)
+    member this.NorthEast () = TilePos(x + 1 - ((y+1)%2),y+1)
+    member this.NorthWest () = TilePos(x - ((y+1)%2),y+1)
     member this.InDirection (dir:Direction) : TilePos =
         match dir with
         | EAST -> this.East ()

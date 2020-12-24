@@ -7,8 +7,9 @@ type State (floor:Floor, pos:TilePos) as self =
     member this.Floor = floor
     member this.Pos = pos 
 
-let flipTiles (state:State) (directions:List<Direction> : List<Direction>) : State =
+let flipTile (state:State) (directions:List<Direction> : List<Direction>) : State =
     let accumulate (state:State) (dir:Direction) =
+        printfn "flipTile:acc %A %A" state dir 
         let newPos = state.Pos.InDirection dir
 //        let newFloor = state.Floor.flip newPos
         State(state.Floor,newPos)
@@ -19,7 +20,7 @@ let flipTiles (state:State) (directions:List<Direction> : List<Direction>) : Sta
 let processInstructions (state:State) (directions:List<Direction>[]) : State =
     let accumulate (state:State) (dirs:List<Direction>) : State =
         let state = State(state.Floor,TilePos(0,0))
-        flipTiles state dirs
+        flipTile state dirs
     directions |> Array.fold accumulate state 
         
           
