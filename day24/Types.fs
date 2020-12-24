@@ -10,7 +10,7 @@ type RawPos = int*int
 type TilePos (x:int,y:int) as self =    
     override this.ToString () = sprintf "T(%d,%d)" x y 
     new() = TilePos(0,0)
-    member this.ROW_INDENT = abs(x) % 2
+    member this.ROW_INDENT = (abs(y)) % 2
     member this.Raw : RawPos = (x,y)
     member this.East () = TilePos(x+1,y)
     member this.West () = TilePos(x-1,y)
@@ -19,6 +19,7 @@ type TilePos (x:int,y:int) as self =
     member this.NorthEast () = TilePos(x + this.ROW_INDENT,y+1)
     member this.NorthWest () = TilePos(x - 1 + this.ROW_INDENT,y+1)
     member this.InDirection (dir:Direction) : TilePos =
+        printfn "ident at %A: %d" self this.ROW_INDENT 
         match dir with
         | EAST -> this.East ()
         | WEST -> this.West ()
