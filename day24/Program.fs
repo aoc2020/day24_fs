@@ -13,8 +13,12 @@ let from whom =
 
 [<EntryPoint>]
 let main argv =
-    let input2 = readLines "/Users/xeno/projects/aoc2020/day24_fs/input2.txt"
-   
+    let input2 = readFile "/Users/xeno/projects/aoc2020/day24_fs/input2.txt"
     printfn "Input: %A" input2
+    let t = TilePos(0,0)
+    let t = t.InDirection(EAST)
+    let t = t.InDirection(EAST)
+    let t = t.InDirection(NW)
+    printfn "%A" t 
     0
     
