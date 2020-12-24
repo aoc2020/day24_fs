@@ -16,8 +16,9 @@ let from whom =
 let main argv =
     let input2 = readFile "/Users/xeno/projects/aoc2020/day24_fs/input2.txt"
 //     printfn "Input: %A" input2
-    // let dirs1 = toDirections "nwwswee"
+    let dirs1 = toDirections "nwwswee"
     let initialState = State(Floor(),TilePos(0,0))
+    // let initialState = State(Floor(), TilePos(-4,-4))
     let endState = processInstructions initialState input2
     // let endState = flipTile initialState dirs1 
     printfn "%A" endState

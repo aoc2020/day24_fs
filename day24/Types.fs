@@ -15,9 +15,9 @@ type TilePos (x:int,y:int) as self =
     member this.East () = TilePos(x+1,y)
     member this.West () = TilePos(x-1,y)
     member this.SouthEast () = TilePos(x + 1 - this.ROW_INDENT,y-1)
-    member this.SouthWest () = TilePos(x - this.ROW_INDENT,y-1)
+    member this.SouthWest () = TilePos(x - 1 + this.ROW_INDENT,y-1)
     member this.NorthEast () = TilePos(x + 1 - this.ROW_INDENT,y+1)
-    member this.NorthWest () = TilePos(x - this.ROW_INDENT,y+1)
+    member this.NorthWest () = TilePos(x - 1 + this.ROW_INDENT,y+1)
     member this.InDirection (dir:Direction) : TilePos =
         match dir with
         | EAST -> this.East ()
