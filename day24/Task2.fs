@@ -7,7 +7,8 @@ let neighborColors (floor:Floor) (pos:TilePos) =
     |> Array.map (floor.tileAt)
 
 let flipFromNeighbors (floor:Floor) (pos:TilePos) : TileColor =
-    let neighbors = neighborColors floor pos 
+    let neighbors = neighborColors floor pos
+//    printfn "Neighbors of pos: %A = %A" pos neighbors
     let isBlack (color:TileColor) = color = BLACK 
     let isWhite (color:TileColor) = color = WHITE
     let blacks = neighbors |> Seq.filter (isBlack) |> Seq.length
@@ -27,6 +28,7 @@ let flipFloor (floor:Floor) : Floor =
     let isBlack (posAndColor:TilePos*TileColor) = (snd posAndColor) = BLACK 
     let findColor (pos:TilePos) : TilePos*TileColor = pos,flipFromNeighbors floor pos 
     let allPos : TilePos[] = floor.allRelevantPositions ()
+//    printfn "%A" allPos
     let newFloor : Floor =
                  allPos
                  |> Array.map (findColor)
@@ -36,7 +38,12 @@ let flipFloor (floor:Floor) : Floor =
                  |> (Floor)
     newFloor 
                          
-   
+let rec flipTimes (floor:Floor) (times:int) : Floor =
+    if times = 0 then floor
+    else
+        let floor = flipFloor floor
+        flipTimes floor (times-1)
+    
     
     
     

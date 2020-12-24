@@ -29,7 +29,7 @@ type TilePos (x:int,y:int) as self =
         | NE -> this.NorthEast ()
         | NW -> this.NorthWest ()
     member this.neighbors () : TilePos[] =
-        [|this.East();this.West();this.SouthEast();this.SouthEast();this.NorthEast();this.NorthWest()|]
+        [|this.East();this.West();this.SouthEast();this.SouthWest();this.NorthEast();this.NorthWest()|]
 
 type TileMap = Map<RawPos,TileColor> 
 type Floor (tiles:Map<RawPos,TileColor>) as self =

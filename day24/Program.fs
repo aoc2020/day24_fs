@@ -14,6 +14,7 @@ let from whom =
 
 [<EntryPoint>]
 let main argv =
+  if true then 
     let input2 = readFile "/Users/xeno/projects/aoc2020/day24_fs/input.txt"
 //     printfn "Input: %A" input2
     let dirs1 = toDirections "nwnwsese"
@@ -23,5 +24,13 @@ let main argv =
     // let endState = flipTile initialState dirs1 
     printfn "%A" endState
     printfn "Answer 1: %d" (endState.Floor.countBlacks ())
+    let flipped = flipTimes endState.Floor 100 
+   
+    printfn "Flip 1 %A" (flipped.countBlacks ())
     0
+  else
+    let floor = Floor((Map.empty.Add ((0,0),BLACK)).Add ((0,2),BLACK))
+    let flipped = flipTimes floor 100 
+    printfn "%d %A" (flipped.countBlacks ()) flipped
     
+    0  
