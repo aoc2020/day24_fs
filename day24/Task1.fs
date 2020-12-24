@@ -9,7 +9,7 @@ type State (floor:Floor, pos:TilePos) as self =
 
 let flipTile (state:State) (directions:List<Direction> : List<Direction>) : State =
     let accumulate (state:State) (dir:Direction) =
-        printfn "flipTile:acc %A %A" state dir 
+//        printfn "flipTile:acc %A %A" state dir 
         let newPos = state.Pos.InDirection dir
 //        let newFloor = state.Floor.flip newPos
         State(state.Floor,newPos)
