@@ -10,9 +10,11 @@ type State (floor:Floor, pos:TilePos) as self =
 let flipTiles (state:State) (directions:List<Direction> : List<Direction>) : State =
     let accumulate (state:State) (dir:Direction) =
         let newPos = state.Pos.InDirection dir
-        let newFloor = state.Floor.flip newPos
-        State(newFloor,newPos)
-    directions |> List.fold accumulate state
+//        let newFloor = state.Floor.flip newPos
+        State(state.Floor,newPos)
+    let state = directions |> List.fold accumulate state
+    let floor = state.Floor.flip state.Pos
+    State(floor,state.Pos)
     
 let processInstructions (state:State) (directions:List<Direction>[]) : State =
     let accumulate (state:State) (dirs:List<Direction>) : State =
